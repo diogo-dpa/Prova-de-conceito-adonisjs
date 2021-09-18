@@ -1,0 +1,14 @@
+version: '3.7'
+services:
+  postgres:
+    image: postgres:10.5
+    container_name: poc_adonis
+    environment:
+      - POSTGRES_HOST=0.0.0.0
+      - POSTGRES_USER=lucid
+      - POSTGRES_PASSWORD=lucid
+      - POSTGRES_DB=lucid
+    ports:
+      - '5432:5432'
+    volumes:
+      - ~/docker_data_tmp/postgres-data:/var/lib/postgresql/data

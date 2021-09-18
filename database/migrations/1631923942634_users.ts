@@ -7,7 +7,7 @@ export default class Users extends BaseSchema {
     this.schema.createTable(this.tableName, (table) => {
       table.uuid('id').primary()
       table.string('name').notNullable()
-      table.uuid('email').notNullable()
+      table.string('email').notNullable()
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
