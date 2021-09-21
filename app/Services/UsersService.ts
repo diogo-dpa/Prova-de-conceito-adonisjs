@@ -12,4 +12,18 @@ export default class UsersService {
     const newUser = await User.create(user);
     return newUser;
   }
+
+  public async updateById(id: string, body){
+    const foundUser = await User.findByOrFail('id', id);
+    foundUser.name = body.name;
+    foundUser.email = body.email;
+    await foundUser.save();
+    return foundUser;
+  }
+
+  public async deleteById(id: string){
+    const foundUser = await User.findByOrFail('id', id)
+    await foundUser.delete();
+    return foundUser;
+  }
 }
