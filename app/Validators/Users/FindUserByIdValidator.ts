@@ -1,7 +1,7 @@
 import { schema, rules } from '@ioc:Adonis/Core/Validator';
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
-export default class UpdateUserValidator {
+export default class FindUserByIdValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -33,16 +33,6 @@ export default class UpdateUserValidator {
         [rules.required()]
       ),
     }),
-    name: schema.string.optional({}, [rules.minLength(5), rules.maxLength(20)]),
-    email: schema.string.optional({}, [
-      rules.email(),
-      rules.unique({
-        table: 'users',
-        column: 'email',
-      }),
-      rules.minLength(5),
-      rules.maxLength(30),
-    ]),
   });
 
   /**

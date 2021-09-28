@@ -18,16 +18,18 @@
 |
 */
 
-import Route from '@ioc:Adonis/Core/Route'
+import Route from '@ioc:Adonis/Core/Route';
 
 Route.group(() => {
-  Route.get('/', 'UsersController.index')
-  Route.post('/', 'UsersController.create')
-  Route.put('/:id', 'UsersController.updateById')
-  Route.delete('/:id', 'UsersController.deleteById')
-}).prefix('/users')
+  Route.get('/', 'UsersController.index');
+  Route.post('/', 'UsersController.create');
+  Route.get('/:id', 'UsersController.findUserById');
+  Route.put('/:id', 'UsersController.updateById');
+  Route.delete('/:id', 'UsersController.deleteById');
+}).prefix('/users');
 
 Route.group(() => {
-  Route.get('/', 'UsersController.index')
-  Route.post('/', 'AddressController.create')
-}).prefix('/address')
+  Route.get('/', 'UsersController.index');
+  Route.post('/', 'AddressController.create');
+  Route.put('/:id', 'UsersController.updateAddressById');
+}).prefix('/address');
