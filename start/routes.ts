@@ -29,7 +29,9 @@ Route.group(() => {
 }).prefix('/users');
 
 Route.group(() => {
-  Route.get('/', 'UsersController.index');
-  Route.post('/', 'AddressController.create');
-  Route.put('/:id', 'UsersController.updateAddressById');
+  Route.get('/', 'AddressesController.index');
+  Route.post('/', 'AddressesController.create');
+  Route.get('/:id', 'AddressesController.findById');
+  Route.put('/:id', 'AddressesController.update');
+  Route.delete('/:id', 'AddressesController.delete');
 }).prefix('/address');

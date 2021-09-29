@@ -7,7 +7,7 @@ export default class UsersService {
       const users = await User.all();
       return users;
     } catch (err) {
-      throw new Error('Error while finding an user.');
+      throw new Error(err.message || 'Error while finding an user.');
     }
   }
 
@@ -16,7 +16,7 @@ export default class UsersService {
       const foundUser = await User.findByOrFail('id', id);
       return foundUser;
     } catch (err) {
-      throw new Error('User not found');
+      throw new Error(err.message || 'User not found');
     }
   }
 
@@ -26,19 +26,17 @@ export default class UsersService {
       const newUser = await User.create(user);
       return newUser;
     } catch (err) {
-      throw new Error('Error while creating an user.');
+      throw new Error(err.message || 'Error while creating an user.');
     }
   }
 
   public async updateById(id: string, body: User) {
     try {
       const foundUser = await User.findByOrFail('id', id);
-      foundUser.name = body.name;
-      foundUser.email = body.email;
-      await foundUser.save();
+      await foundUser.merge({ ...body }).save();
       return foundUser;
     } catch (err) {
-      throw new Error('User Id does not exist.');
+      throw new Error(err.message || 'User Id does not exist.');
     }
   }
 
@@ -48,7 +46,7 @@ export default class UsersService {
       await foundUser.delete();
       return foundUser;
     } catch (err) {
-      throw new Error('User Id does not exist.');
+      throw new Error(err.message || 'User Id does not exist.');
     }
   }
 }
